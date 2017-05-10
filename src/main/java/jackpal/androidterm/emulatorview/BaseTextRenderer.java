@@ -20,7 +20,8 @@ import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.Path;
-import android.graphics.PixelXorXfermode;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 
 abstract class BaseTextRenderer implements TextRenderer {
@@ -321,7 +322,9 @@ abstract class BaseTextRenderer implements TextRenderer {
 
         mCursorPaint = new Paint();
         mCursorPaint.setColor(sCursorColor);
-        mCursorPaint.setXfermode(new PixelXorXfermode(~sCursorColor));
+        //mCursorPaint.setXfermode(new PixelXorXfermode(~sCursorColor));
+        mCursorPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+
         mCursorPaint.setAntiAlias(true);
 
         mCursorStrokePaint = new Paint(mCursorPaint);
